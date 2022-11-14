@@ -34,6 +34,7 @@ public class Field extends JPanel implements ActionListener
 	private boolean down; 
 	private boolean Game = true ;
 	private boolean right= true ; 
+	private int score; 
 	
 	
 	class FieldKeyListener extends KeyAdapter{
@@ -72,10 +73,9 @@ public class Field extends JPanel implements ActionListener
 	                left = false;
 	            }
 	        }
-		
+	        	
 	}
-	
-	
+		
 	public void loadImage () // method to load the  snake pattern and fruit image 
 	{
 		ImageIcon iia = new ImageIcon("fruit.png");
@@ -90,13 +90,16 @@ public class Field extends JPanel implements ActionListener
 		super.paintComponent(g);
 		if(Game) 
 		{
+			g.drawString("Score:     " + score, 20, 30); 
 			g.drawImage(fruit, fruitX, fruitY, this);
 			for(int i = 0; i < snakie; i++) {
 				g.drawImage(snake, x[i], y[i], this);
 				
-				
-				
 			}
+		}
+		if (!Game) {
+			g.drawString("GAME OVER", 200, 150);
+			
 		}
 	}
 	
@@ -122,7 +125,7 @@ public class Field extends JPanel implements ActionListener
 		createFruit();
 	}
 	
-	public void Moving() 
+	public void Moving()  // to define snake moves 
 	{
 		for (int i = snakie; i > 0 ; i--) 
 		{
@@ -158,6 +161,7 @@ public class Field extends JPanel implements ActionListener
 			{
 			
 				snakie ++;
+				score ++;
 				createFruit();
 		}
 			}
@@ -169,7 +173,7 @@ public class Field extends JPanel implements ActionListener
 		
 		for(int i = snakie; i>0; i--) 
 		{
-			if (i >5 ) {
+			if (i > 4 ) { // in case of 4 snake can eat it self 
 				if(x[0] == x[i]) {
 					if(y[0] == y[i]) {
 						Game = false;
@@ -225,3 +229,4 @@ public class Field extends JPanel implements ActionListener
 	
 
 }
+
