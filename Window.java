@@ -11,8 +11,8 @@ public class Window extends JFrame{
 		setTitle("Snake"); // game name
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // to close the window  and stop iteration
 		add(new Field());
-		setSize(500, 345); // window size
-		setLocation(400, 400);
+		setSize(500, 500); // window size
+		setLocation(400, 400); // location on the screen 
 		setVisible(true); //visible window
 
 	}
